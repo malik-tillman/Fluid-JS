@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const pack = require("./package");
 
-const isProductionMode = false;
+const isProductionMode = true;
 const header = `
     🌊 ${pack.name} 🌊 - ${pack.description}
     Library By: ${pack.author}
