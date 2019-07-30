@@ -1,0 +1,31 @@
+<!-- Welcome to Fluid.JS -->
+<!DOCTYPE html>
+<html lang="en">
+    <head> <!-- The Magic 🔮 -->
+        <script src="lib/fluid.js"></script>
+
+        <meta charset="UTF-8">
+        <title>Welcome to Fluid.js</title>
+    </head>
+
+    <body style="margin: 0;">
+        <h1>Fluid JS</h1>
+
+        <!-- Declare a canvas element -->
+        <canvas id="renderSurface" style="width: 90vw; height: 90vh;"></canvas>
+
+        <script>
+            /* Get a reference to your canvas */
+            const canvas = document.getElementById('renderSurface');
+
+            /* Initiate the Fluid object with that canvas */
+            const fluid = new Fluid(canvas);
+
+            /* Activate the fluid */
+            //fluid.applyBackground('gradient', '#e66465, #9198e5');
+            fluid.activate();
+
+
+        </script>
+    </body>
+</html>

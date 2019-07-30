@@ -1,4 +1,4 @@
-# Fluid JS
+# 🌊 Fluid.js 🌊
 
 A JavaScript library that allows for easy deployment of WebGL rendered fluid simulations based on the Navier-Stokes Equations for incompressible flow.
 
@@ -8,93 +8,81 @@ The purpose behind this was to be able to dynamically work the simulation design
 
 > This project is in early-development and open to contribution.
 
----
 
-## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. Deploy how you would usually deploy your standard HTML website.
-
-
-## Starting a New Project
-
----
-
-Open git bash and clone the library to your desktop. (or where ever you want of course)
+Getting Started
+--
+###### CDN
+```HTML
+<script src="https://cdn.jsdelivr.net/npm/fluid-canvas@latest"></script>
 ```
-cd Desktop/
+
+###### Terminal
+```shell script
+npm i fluid-canvas
+```
+
+###### Clone
+```shell script
 git clone https://github.com/malik-tillman/Fluid-JS.git
 ```
 
-#### Using the Demo (OPTIONAL)
-Located in ```/demo```, there is a fully rigged setup you can explore and tweak to get familar.
-```/demo/fluid.js``` is where the library lives. If you are interested in learing WebGL check out the links below.
+Usage
+--
 
-#### Loading fluid into your browser
-1. Select `/demo/index.html`
-2. Right click   
-3. Select `'Open with'` 
-4. Select your browser.
+##### Add script in `<head>` tag
 
-
-## Adding to Existing Project
-
----
-
-#### Add `fluid.js` to `<head>` tag
-
-~~~ html
+```html
 <head>
   <title>Fluid JS Example</title>
   
-  <script type="text/javascript" src="fluid.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fluid-canvas@latest"></script>
 </head>
-~~~
+```
 
-#### Add a new canvas to the `<body>` tag. Give it an identifier so you can retrieve it from DOM later
+##### Create a new canvas in the `<body>` tag. Give it an identifier so you can retrieve it from DOM later
 
-~~~ html
+```html
 <body>
     . . .
     
     <canvas id="renderSurface"></canvas>
 </body>
-~~~
+```
 
-#### Now we can initialize the canvas as our fluid's surface
+##### Now we can initialize the canvas as our fluid's surface
 
-~~~ html
-<script>
-    const canvas = document.getElementById('renderSurface');
+```javascript
+import Fluid from 'fluid';
 
-    let myFluid = new Fluid(canvas);
-    myFluid.activate();
-</script>
-~~~
+const canvas = document.getElementById('renderSurface');
+let myFluid = new Fluid(canvas);
 
-#### You may also want to add some styles
+myFluid.activate();
+```
 
-~~~ html
-<style>
-  body {
-      margin: 0;
-      position: fixed;
-      width: 100%;
-      height: 100%;
-  }
+##### You may also want to add some styles
 
-  canvas {
-      width: 100%;
-      height: 100%;
-  }
-</style>
-~~~
+```css
+body {
+  margin: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
 
-#### Full Code
+canvas {
+  width: 100%;
+  height: 100%;
+}
+```
 
-~~~ html
+##### Full Example Code
+
+```html
 <html>
   <head>
     <title>Fluid JS Example</title>
-    <script type="text/javascript" src="fluid.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fluid-canvas@latest"></script>
     <style>
       body {
           margin: 0;
@@ -119,7 +107,38 @@ Located in ```/demo```, there is a fully rigged setup you can explore and tweak 
       </script>
   </body>
 </html>
-~~~
+```
+
+Configure Fluid Behavior
+--
+
+There are two ways you can configure the fluid behavior.
+
+#### Mapping Behaviors
+
+---
+
+```javascript
+fluid.mapBehaviors({
+    curl: 25,
+    pressure: .9,
+    dissipation: .98,
+    transparent: false,
+    embedded_dither: true
+});
+
+fluid.activate();
+```
+This method allows for assignment of multiple fluid behavior properties at once. It is not dynamic, you must re-activate the simulation every time you want to see the effects of the mapping.
+
+#### Dynamic Assignment 
+
+---
+
+```javascript
+fluid.PARAMS.curl = 25;
+```
+This method allows for most fluid behaviors to be adjusted on-the-fly. This means you can change a property without having to re-activate your simulation.
 
 ## Support
 
