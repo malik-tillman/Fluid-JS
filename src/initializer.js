@@ -1,4 +1,4 @@
-import * as defualts from "./defualts";
+import * as defualts from "./defaults";
 import * as dither from "../assets/dither.png";
 
 let active = false;
@@ -8,9 +8,9 @@ let ditherURL = "./assets/dither.png";
 /**
  * Initiate WebGL Object
  *  Gets WebGL context and compiles shader programs.
- *
+ * @param canvas the <canvas> element from which we get the WebGL context
  */
-export function initWebGL(){
+export function initWebGL(canvas){
     /* Add default pointer */
     let pointers = [];
     pointers.push( new Pointer() );

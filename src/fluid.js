@@ -2,7 +2,7 @@
 https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Constants
  */
 'use strict';
-import { behavior, setBehaviors } from "./defualts";
+import { behavior, setBehaviors } from "./defaults";
 import { initWebGL, activator, setDitherURL } from './initializer';
 
 module.exports = class Fluid {
@@ -15,7 +15,7 @@ module.exports = class Fluid {
         canvas.height = canvas.clientHeight;
         this.canvas = canvas;
 
-        const {programs, webGL, colorFormats, pointers} = initWebGL();
+        const {programs, webGL, colorFormats, pointers} = initWebGL(canvas);
         this.programs = programs;
         this.webGL = webGL;
         this.colorFormats = colorFormats;
