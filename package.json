@@ -34,6 +34,6 @@
   },
   "dependencies": {
     "babel-loader": "^8.0.6",
-    "npm": "^6.10.2"
+    "npm": "^9.1.3"
   }
 }
