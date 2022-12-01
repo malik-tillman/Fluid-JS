@@ -1,6 +1,6 @@
 {
   "name": "fluid-canvas",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "A JavaScript library that allows for easy deployment of WebGL rendered fluid simulations.",
   "main": "lib/fluid.js",
   "scripts": {

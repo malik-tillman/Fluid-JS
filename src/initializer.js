@@ -1,4 +1,4 @@
-import * as defualts from "./defaults";
+import * as defaults from "./defaults";
 import * as dither from "../assets/dither.png";
 
 let active = false;
@@ -16,44 +16,44 @@ export function initWebGL(canvas){
     pointers.push( new Pointer() );
 
     /* Get webGL context */
-    let webGL = canvas.getContext('webgl2', defualts.DRAWING_PARAMS);
+    let webGL = canvas.getContext('webgl2', defaults.DRAWING_PARAMS);
     const isWebGL2 = !!webGL;
     if (!isWebGL2)
-        webGL = canvas.getContext('webgl', defualts.DRAWING_PARAMS) || canvas.getContext('experimental-webgl', defualts.DRAWING_PARAMS);
+        webGL = canvas.getContext('webgl', defaults.DRAWING_PARAMS) || canvas.getContext('experimental-webgl', defaults.DRAWING_PARAMS);
 
     /* Get color formats */
     let colorFormats = getFormats();
 
     /* Case support adjustments */
     if (isMobile())
-        defualts.behavior.render_shaders = false;
+        defaults.behavior.render_shaders = false;
     if (!colorFormats.supportLinearFiltering) {
-        defualts.behavior.render_shaders = false;
-        defualts.behavior.render_bloom = false;
+        defaults.behavior.render_shaders = false;
+        defaults.behavior.render_bloom = false;
     }
 
     /* Make our shaders and shader programs */
     const SHADER = {
-        baseVertex               : compileShader(webGL.VERTEX_SHADER, defualts.SHADER_SOURCE.vertex),
+        baseVertex               : compileShader(webGL.VERTEX_SHADER, defaults.SHADER_SOURCE.vertex),
 
-        clear                    : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.clear),
-        color                    : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.color),
-        background               : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.background),
-        display                  : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.display),
-        displayBloom             : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.displayBloom),
-        displayShading           : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.displayShading),
-        displayBloomShading      : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.displayBloomShading),
-        bloomPreFilter           : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.bloomPreFilter),
-        bloomBlur                : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.bloomBlur),
-        bloomFinal               : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.bloomFinal),
-        splat                    : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.splat),
-        advectionManualFiltering : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.advectionManualFiltering),
-        advection                : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.advection),
-        divergence               : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.divergence),
-        curl                     : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.curl),
-        vorticity                : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.vorticity),
-        pressure                 : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.pressure),
-        gradientSubtract         : compileShader(webGL.FRAGMENT_SHADER, defualts.SHADER_SOURCE.gradientSubtract)
+        clear                    : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.clear),
+        color                    : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.color),
+        background               : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.background),
+        display                  : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.display),
+        displayBloom             : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.displayBloom),
+        displayShading           : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.displayShading),
+        displayBloomShading      : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.displayBloomShading),
+        bloomPreFilter           : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.bloomPreFilter),
+        bloomBlur                : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.bloomBlur),
+        bloomFinal               : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.bloomFinal),
+        splat                    : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.splat),
+        advectionManualFiltering : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.advectionManualFiltering),
+        advection                : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.advection),
+        divergence               : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.divergence),
+        curl                     : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.curl),
+        vorticity                : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.vorticity),
+        pressure                 : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.pressure),
+        gradientSubtract         : compileShader(webGL.FRAGMENT_SHADER, defaults.SHADER_SOURCE.gradientSubtract)
     };
     let programs = formShaderPrograms(colorFormats.supportLinearFiltering);
 
@@ -231,7 +231,7 @@ export function initWebGL(canvas){
 }
 
 export function activator(canvas, webGL, colorFormat, PROGRAMS, pointers) {
-    if(active){
+    if(active) {
         let nPointers = [];
         nPointers.push( new Pointer() );
         pointers = nPointers;
@@ -240,7 +240,7 @@ export function activator(canvas, webGL, colorFormat, PROGRAMS, pointers) {
     active = true;
 
     /* TODO: Retrieve haul style */
-    const PARAMS = defualts.behavior;
+    const PARAMS = defaults.behavior;
 
     let bloomFrameBuffers = [];
     let splatStack = [];
@@ -281,12 +281,11 @@ export function activator(canvas, webGL, colorFormat, PROGRAMS, pointers) {
 
     /* Initialize Fluid */
     init();
-    multipleSplats(parseInt(Math.random() * 20) + 5);
+    multipleSplats(Math.random() * 20 + 5);
 
     /* Game Loop */
     let lastColorChangeTime = Date.now();
     update();
-
     /* Game Loop */
 
     /**
@@ -807,21 +806,27 @@ export function activator(canvas, webGL, colorFormat, PROGRAMS, pointers) {
  *
  * @param url: Path to dither in root directory.
  */
-export function setDitherURL(url) { ditherURL = url; }
+export function setDitherURL(url) { ditherURL = url }
 
+/**
+ * A WebGL program with the given vertex and fragment shaders.
+ */
 class GLProgram {
     constructor (vertexShader, fragmentShader, webGL) {
         this.uniforms = {};
         this.webGL = webGL;
         this.program = webGL.createProgram();
 
+        // Create program from shader
         webGL.attachShader(this.program, vertexShader);
         webGL.attachShader(this.program, fragmentShader);
         webGL.linkProgram(this.program);
 
+        // Check linking status
         if (!webGL.getProgramParameter(this.program, webGL.LINK_STATUS))
             throw webGL.getProgramInfoLog(this.program);
 
+        // Cache uniforms to class
         const uniformCount = webGL.getProgramParameter(this.program, webGL.ACTIVE_UNIFORMS);
         for (let i = 0; i < uniformCount; i++) {
             const uniformName = webGL.getActiveUniform(this.program, i).name;
@@ -829,6 +834,9 @@ class GLProgram {
         }
     }
 
+    /**
+     * Sets shader program as part of current rendering state.
+     */
     bind () {
         this.webGL.useProgram(this.program);
     }

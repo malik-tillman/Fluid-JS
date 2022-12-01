@@ -1,5 +1,6 @@
 /* Refs
 https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Constants
+http://www.cse.chalmers.se/edu/year/2015/course/TDA361/Advanced%20Computer%20Graphics/GpuGems-FluidDynamics.pdf
  */
 'use strict';
 import { behavior, setBehaviors } from "./defaults";
@@ -37,6 +38,7 @@ module.exports = class Fluid {
      * Deactivate Fluid Canvas
      *  Notifies active fluid canvas to clear buffers and erase fluid from call stack.
      *
+     *  TODO: Implement
      */
     deactivate(){
 
